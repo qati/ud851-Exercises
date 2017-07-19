@@ -16,6 +16,8 @@ package com.example.android.boardingpass.utilities;
 * limitations under the License.
 */
 
+import android.content.Context;
+
 import com.example.android.boardingpass.BoardingPassInfo;
 import com.example.android.boardingpass.R;
 
@@ -31,9 +33,9 @@ public class FakeDataUtils {
      * Generates fake boarding pass data to be displayed.
      * @return fake boarding pass data
      */
-    public static BoardingPassInfo generateFakeBoardingPassInfo() {
+    public static BoardingPassInfo generateFakeBoardingPassInfo(Context context) {
 
-        BoardingPassInfo bpi = new BoardingPassInfo();
+        BoardingPassInfo bpi = new BoardingPassInfo(context);
 
         bpi.passengerName = "MR. RANDOM PERSON";
         bpi.flightCode = "UD 777";

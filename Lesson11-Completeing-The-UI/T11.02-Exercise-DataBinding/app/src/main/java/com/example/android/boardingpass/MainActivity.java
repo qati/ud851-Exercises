@@ -16,34 +16,41 @@ package com.example.android.boardingpass;
 * limitations under the License.
 */
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.android.boardingpass.databinding.ActivityMainBinding;
+import com.example.android.boardingpass.utilities.FakeDataUtils;
+
 public class MainActivity extends AppCompatActivity {
 
-    //TODO (3) Create a data binding instance called mBinding of type ActivityMainBinding
+    //DONE (3) Create a data binding instance called mBinding of type ActivityMainBinding
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        BoardingPassInfo boardingPass = FakeDataUtils.generateFakeBoardingPassInfo(this);
+        binding.setBoardingPass(boardingPass);
 
-        // TODO (4) Set the Content View using DataBindingUtil to the activity_main layout
+        // DONE (4) Set the Content View using DataBindingUtil to the activity_main layout
 
-        // TODO (5) Load a BoardingPassInfo object with fake data using FakeDataUtils
+        // DONE (5) Load a BoardingPassInfo object with fake data using FakeDataUtils
 
-        // TODO (9) Call displayBoardingPassInfo and pass the fake BoardingInfo instance
+        // DONE (9) Call displayBoardingPassInfo and pass the fake BoardingInfo instance
 
     }
 
     private void displayBoardingPassInfo(BoardingPassInfo info) {
 
-        // TODO (6) Use mBinding to set the Text in all the textViews using the data in info
+        // DONE (6) Use mBinding to set the Text in all the textViews using the data in info
 
-        // TODO (7) Use a SimpleDateFormat formatter to set the formatted value in time text views
+        // DONE (7) Use a SimpleDateFormat formatter to set the formatted value in time text views
 
-        // TODO (8) Use TimeUnit methods to format the total minutes until boarding
+        // DONE (8) Use TimeUnit methods to format the total minutes until boarding
 
     }
 }

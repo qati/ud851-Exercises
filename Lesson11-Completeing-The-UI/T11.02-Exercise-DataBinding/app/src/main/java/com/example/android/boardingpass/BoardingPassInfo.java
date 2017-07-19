@@ -16,7 +16,11 @@ package com.example.android.boardingpass;
 * limitations under the License.
 */
 
+import android.content.Context;
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,8 +45,36 @@ public class BoardingPassInfo {
 
     public int barCodeImageResource;
 
+    private SimpleDateFormat mFormatter;
+    private Context mContext;
+
+    public BoardingPassInfo(Context context){
+        mFormatter = new SimpleDateFormat(context.getString(R.string.timeFormat), Locale.getDefault());
+        mContext = context;
+    }
+
     public long getMinutesUntilBoarding() {
         long millisUntilBoarding = boardingTime.getTime() - System.currentTimeMillis();
         return TimeUnit.MILLISECONDS.toMinutes(millisUntilBoarding);
+    }
+
+    public String getBoardingTime(){
+        return mFormatter.format(boardingTime);
+    }
+    public String getDepartureTime(){
+        return mFormatter.format(departureTime);
+    }
+    public String getArrivalTime(){
+        return mFormatter.format(arrivalTime);
+    }
+    public String getCountDown(){
+        long totalMinutesUntilBoarding = getMinutesUntilBoarding();
+        long hoursUntilBoarding = TimeUnit.MINUTES.toHours(totalMinutesUntilBoarding);
+        long minutesLessHoursUntilBoarding =
+                totalMinutesUntilBoarding - TimeUnit.HOURS.toMinutes(hoursUntilBoarding);
+
+        return mContext.getString(R.string.countDownFormat,
+                hoursUntilBoarding,
+                minutesLessHoursUntilBoarding);
     }
 }
